@@ -1,0 +1,32 @@
+public GameObject _target;
+public float _maxDistance;
+public int _coroutineFrequency;
+void Start() {
+StartCoroutine(DisableAtADistance());
+}
+IEnumerator DisableAtADistance() {
+while(true) {
+float distSqrd = (Transform.position -
+_target.transform.position).sqrMagnitude;
+if (distSqrd < _maxDistance * _maxDistance) {
+enabled = true;
+} else {
+enabled = false;
+}
+for (int i = 0; i < _coroutineFrequency; ++i) {
+yield return new WaitForEndOfFrame();
+}
+}
+}
+
+//pamiętaj o compareTag!!
+
+zamiast
+if (gameObject != null) {
+// do stuff with gameObject
+}
+
+zrób tak
+if (!System.Object.ReferenceEquals(gameObject, null)) {
+// do stuff with gameObject
+}
